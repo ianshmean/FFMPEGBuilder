@@ -24,9 +24,9 @@ if [[ "${target}" == *-linux-* ]]; then
 elif [[ "${target}" == *-apple-* ]]; then
     export ccOS="darwin"
 elif [[ "${target}" == *-w32-* ]]; then
-    export ccOS="win32"
+    export ccOS="mingw32"
 elif [[ "${target}" == *-w64-* ]]; then
-    export ccOS="win64"
+    export ccOS="mingw64"
 elif [[ "${target}" == *-unknown-freebsd* ]]; then
     export ccOS="freebsd"
 else
@@ -79,6 +79,7 @@ pkg-config x265 --debug
   --enable-muxers      \
   --enable-demuxers    \
   --enable-parsers     \
+  --extra-libs=-lpthread \
   --extra-cflags="-I${prefix}/include" \
   --extra-ldflags="-L${prefix}/lib"
 make -j${nproc}
